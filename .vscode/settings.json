@@ -1,4 +1,43 @@
 {
+  "window.commandCenter": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.perEditorGroup": false,
+  "workbench.editor.limit.value": 4,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.removeUnsedImports": "always"
+  },
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "editor.tabSize": 2,
+  "explorer.compactFolders": false,
+  "git.confirmSync": false,
+  "editor.linkedEditing": true,
+
+  "liveServer.settings.donotShowInfoMsg": true,
+  "editor.wordWrap": "on",
+  "explorer.confirmDelete": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "explorer.confirmDragAndDrop": false,
+  "redhat.telemetry.enabled": true,
+  "editor.fontFamily": "\"Cascadia Code\", Consolas, \"Courier New\", monospace",
+  "editor.fontLigatures": true,
+  "workbench.colorTheme": "Dracula Theme",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "explorer.confirmPasteNative": false,
+  "editor.accessibilitySupport": "off",
+  "git.enableSmartCommit": true,
+  "window.autoDetectColorScheme": false,
+  "supermaven.enable": {
+    "*": true
+  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -7,5 +46,6 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "files.eol": "\n"
 }
