@@ -14,6 +14,9 @@ importers:
       '@electron-toolkit/utils':
         specifier: ^4.0.0
         version: 4.0.0(electron@39.8.10)
+      lodash:
+        specifier: ^4.18.1
+        version: 4.18.1
     devDependencies:
       '@electron-toolkit/eslint-config-prettier':
         specifier: ^3.0.0
