@@ -1,10 +1,12 @@
-import { appDirectoryName, fileEncoding } from '@shared/constant'
+import { appDirectoryName, fileEncoding, welcomeNoteFilename } from '@shared/constant'
 import { NoteInfo } from '@shared/models'
-import { CreateNote, GetNotes, ReadNote, WriteNote } from '@shared/types'
+import { CreateNote, DeleteNote, GetNotes, ReadNote, WriteNote } from '@shared/types'
 import { dialog } from 'electron'
-import { ensureDir, readdir, readFile, stat, writeFile } from 'fs-extra'
+import { ensureDir, readdir, readFile, remove, stat, writeFile } from 'fs-extra'
 import { homedir } from 'os'
 import path from 'path'
+import { isEmpty } from 'lodash'
+import welcomNoteFile from '../../../resources/welcomeNote.md?asset'
 
 export const getRootDir = () => {
   return `${homedir()}/${appDirectoryName}`
@@ -22,6 +24,16 @@ export const getNotes: GetNotes = async () => {
 
   const notes = notesFileNames.filter((fileName) => fileName.endsWith('.md'))
 
+  if (isEmpty(notes)) {
+    console.info(`No notes found, creating a welcome note`)
+
+    const content = await readFile(welcomNoteFile, { encoding: fileEncoding })
+
+    // create the welcome note
+    await writeFile(`${rootDir}/${welcomeNoteFilename}`, content, { encoding: fileEncoding })
+
+    notes.push(welcomeNoteFilename)
+  }
   return Promise.all(notes.map(getNoteInfoFromFilename))
 }
 
@@ -87,4 +99,27 @@ export const createNote: CreateNote = async () => {
   await writeFile(filePath, '')
 
   return filename
+}
+
+export const deleteNote: DeleteNote = async (filename) => {
+  const rootDir = getRootDir()
+
+  const { response } = await dialog.showMessageBox({
+    type: 'warning',
+    title: 'Delete note',
+    message: `Are you sure you want to delete ${filename}?`,
+    buttons: ['Delete', 'Cancel '], // 0 is delete, 1 is cancel,
+    defaultId: 1,
+    cancelId: 1
+  })
+
+  if (response === 1) {
+    console.info('Note deletion canceled')
+    return false
+  }
+
+  console.info(`Deleting note: ${filename}`)
+  await remove(`${rootDir}/${filename}.md`)
+
+  return true
 }
