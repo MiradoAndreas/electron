@@ -47,5 +47,12 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "files.eol": "\n"
+  // Forcer LF
+  "files.eol": "\n",
+
+  // Configuration Prettier spécifique
+  "prettier.endOfLine": "lf",
+
+  // S'assurer que Git convertit correctement
+  "files.encoding": "utf8"
 }
