@@ -14,9 +14,8 @@ function createWindow(): void {
     center: true,
     title: 'NoteMark',
     backgroundMaterial: 'acrylic',
-    frame: false,
+
     visualEffectState: 'active',
-    titleBarStyle: 'hidden',
     trafficLightPosition: { x: 15, y: 10 },
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
