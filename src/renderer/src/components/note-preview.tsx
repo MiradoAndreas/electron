@@ -8,7 +8,6 @@ export type NotePreviewProps = NoteInfo & {
 
 export const NotePreview = ({
   title,
-  content,
   lastEditTime,
   isActive = false,
   className,
